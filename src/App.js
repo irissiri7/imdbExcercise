@@ -12,8 +12,8 @@ const tableStyle = {
 
 function App() {
   const [actors, updateActors] = useState(json.slice(0,5).map(item => item));
-  let [sortedByName, updateSortedByName] = useState(false);
-  let [sortedByPopularity, updateSortedByPopularity] = useState(false);
+  const [sortedByName, updateSortedByName] = useState(false);
+  const [sortedByPopularity, updateSortedByPopularity] = useState(false);
 
 
   const generateRandomActors = () => {
@@ -42,14 +42,23 @@ function App() {
       updateSortedByPopularity(true);
     }
   }
+
+  const deleteActor = (e) => {
+    const indexToRemove = e.target.parentElement.parentElement.rowIndex - 1;
+    console.log(indexToRemove);
+    let newActorsArray = actors.filter((element, index) => index !== indexToRemove);
+    console.log(newActorsArray);
+    updateActors(newActorsArray);
+  }
+
   
 
   return (
     <div id='app-main'>
       <h1>Hello world</h1>
-      <Button text="Generate Random actors" action={generateRandomActors}/>
-      <Button text="Sort By Name" action={sortByName}/>
-      <Button text="Sort By Popularity" action={sortByPopularity}/>
+      <Button text="Generate Random actors" handleClick={generateRandomActors}/>
+      <Button text="Sort By Name" handleClick={sortByName}/>
+      <Button text="Sort By Popularity" handleClick={sortByPopularity}/>
 
       <table style={tableStyle}>
             <thead>
@@ -62,7 +71,7 @@ function App() {
             </thead>
             <tbody>
             {
-              actors.map((item, index) => <Card sortedByName={sortedByName} key={index} picture={item.pictureUrl} name={item.name} popularity={item.popularity} action={<Button text={'delete'} />}/>)
+              actors.map((item, index) => <Card id={index} key={index} picture={item.pictureUrl} name={item.name} popularity={item.popularity} action={<Button text={'delete'} handleClick={deleteActor} />}/>)
             }
             </tbody>
         </table>

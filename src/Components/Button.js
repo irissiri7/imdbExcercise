@@ -7,8 +7,8 @@ const btnStyle = {
     backgroundColor: 'grey'
 }
 
-const Button = ({text, action}) =>{
-    return <button style={btnStyle} onClick={action}>{text}</button>
+const Button = ({text, handleClick}) =>{
+    return <button style={btnStyle} onClick={handleClick}>{text}</button>
 }
 
 export default Button;
