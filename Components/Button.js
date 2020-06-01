@@ -10,3 +10,5 @@ const btnStyle = {
 const Button = ({text}) =>{
     return <button style={btnStyle}>{text}</button>
 }
+
+export default Button;
