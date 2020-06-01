@@ -1,8 +1,13 @@
 import React from 'react';
 
+const tableStyle = {
+    width: 'fit-content',
+    margin: '0 auto'
+}
+
 const Card = ({picture, name, popularity, action}) => {
     return (
-        <table>
+        <table style={tableStyle}>
             <thead>
                 <tr>
                     <th>Picture</th>

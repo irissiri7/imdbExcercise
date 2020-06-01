@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
-import Button from '../Components/Button';
-import Card from '../Components/Card';
+import Button from './Components/Button';
+import Card from './Components/Card';
+
+const json = require('./Data/imdb.json');
+console.log(json);
 
 function App() {
   return (
