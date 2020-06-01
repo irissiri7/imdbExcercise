@@ -12,22 +12,35 @@ const tableStyle = {
 
 function App() {
   const [actors, updateActors] = useState(json.slice(0,5).map(item => item));
-  console.log(actors);
+  let [sortedByName, updateSortedByName] = useState(false);
+  let [sortedByPopularity, updateSortedByPopularity] = useState(false);
+
 
   const generateRandomActors = () => {
-    let rdn = Math.random()* json.length -5;
-    console.log(rdn);
-    updateActors(() => json.slice(rdn, rdn+5).map(item => item))
-    console.log(actors);
+    updateSortedByName(false);
+    updateSortedByPopularity(false);
+    
+    const startIndex = Math.random()* json.length -5;
+    const endIndex = startIndex + 5;
+
+    updateActors(() => json.slice(startIndex, endIndex).map(item => item))
   }
 
   const sortByName = () => {
-    console.log('orginal');
-    console.log(actors);
-    // let sortedActors = actors.sort((a, b) => (a.name > b.name)? 1:-1);
-    // console.log('sorted');
-    // console.log(sortedActors);
-    // updateActors(sortedActors);
+    if(!sortedByName){
+      updateActors(() => actors.sort((a, b) => (a.name > b.name) ? 1 : -1));
+      updateSortedByPopularity(false);
+      updateSortedByName(true);
+    }
+  }
+
+  const sortByPopularity = () =>{
+    if(!sortedByPopularity){
+      updateActors(() => actors.sort((a, b) => (a.popularity < b.popularity) ? 1 : -1));
+      console.log(actors);
+      updateSortedByName(false);
+      updateSortedByPopularity(true);
+    }
   }
   
 
@@ -36,7 +49,7 @@ function App() {
       <h1>Hello world</h1>
       <Button text="Generate Random actors" action={generateRandomActors}/>
       <Button text="Sort By Name" action={sortByName}/>
-      <Button text="Sort By Popularity"/>
+      <Button text="Sort By Popularity" action={sortByPopularity}/>
 
       <table style={tableStyle}>
             <thead>
@@ -49,7 +62,7 @@ function App() {
             </thead>
             <tbody>
             {
-              actors.map(item => <Card key= {item.name} picture={item.pictureUrl} name={item.name} popularity={item.popularity} action={<Button text={'delete'} />}/>)
+              actors.map((item, index) => <Card sortedByName={sortedByName} key={index} picture={item.pictureUrl} name={item.name} popularity={item.popularity} action={<Button text={'delete'} />}/>)
             }
             </tbody>
         </table>
