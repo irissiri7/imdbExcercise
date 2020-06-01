@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import './App.css';
+import './Styling/app.css';
 import Button from './Components/Button';
 import Card from './Components/Card';
 import {tableStyle} from './Styling/tableStyles';
