@@ -20,8 +20,11 @@ function App() {
     updateSortedByName(false);
     updateSortedByPopularity(false);
     
-    const startIndex = Math.random()* json.length -5;
+    const startIndex = Math.random()* (json.length -5);
+    console.log(json.length);
     const endIndex = startIndex + 5;
+    console.log('start' + startIndex);
+    console.log('end' + endIndex);
 
     updateActors(() => json.slice(startIndex, endIndex).map(item => item))
   }
@@ -71,7 +74,7 @@ function App() {
             </thead>
             <tbody>
             {
-              actors.map((item, index) => <Card id={index} key={index} picture={item.pictureUrl} name={item.name} popularity={item.popularity} action={<Button text={'delete'} handleClick={deleteActor} />}/>)
+              actors.map((item, index) => <Card id={index} key={index} picture={item.pictureUrl} name={item.name} popularity={Math.floor(item.popularity)} action={<Button text={'delete'} handleClick={deleteActor} />}/>)
             }
             </tbody>
         </table>
