@@ -14,3 +14,5 @@ const Card = ({picture, name, popularity, action}) => {
         </table>
     )
 }
+
+export default Card;
