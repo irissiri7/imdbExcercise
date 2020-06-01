@@ -1,11 +1,7 @@
 import React from 'react';
+import {btnStyle} from '../Styling/ButtonStyles';
 
 
-const btnStyle = {
-    borderRadius: 5,
-    color: 'white',
-    backgroundColor: 'grey'
-}
 
 const Button = ({text, handleClick}) =>{
     return <button style={btnStyle} onClick={handleClick}>{text}</button>

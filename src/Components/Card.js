@@ -4,7 +4,7 @@ const Card = ({picture, name, popularity, action}) => {
     
     return (
         <tr>
-            <td><img  width={100} src={picture} alt={name}/></td>
+            <td><img  width={50} src={picture} alt={name}/></td>
             <td>{name}</td>
             <td>{popularity}</td>
             <td>{action}</td>
