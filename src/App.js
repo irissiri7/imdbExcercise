@@ -4,11 +4,7 @@ import Button from './Components/Button';
 import Card from './Components/Card';
 import {tableStyle} from './Styling/tableStyles';
 
-
-
 const json = require('./Data/imdb.json');
-
-
 
 const App = () => {
   const [actors, updateActors] = useState(json.slice(0,5).map(item => item));
